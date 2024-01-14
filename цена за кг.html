@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			height: 95vh;
+			display: grid;
+			align-items: center;
+			background-color: rgb(29, 26, 26);
+		}
+
+		input {
+			height: 50px;
+			width: 200px;
+			text-align: center;
+			font-size: 32px;
+			border: solid red;
+		}
+
+		.wrapper {
+			display: grid;
+			gap: 16px;
+			justify-items: center;
+		}
+
+		.btn {
+			background-color: rgb(255, 55, 0);
+			width: fit-content;
+			font-size: 32px;
+			font-weight: 700;
+			border: solid red;
+			border-radius: 20px;
+			padding: 10px;
+			margin: 0 auto;
+		}
+
+		.btn:active {
+			background-color: rgb(221, 52, 10);
+			border: solid 10px red;
+		}
+
+		.price-kg {
+			height: 50px;
+			border: solid red;
+			background-color: aliceblue;
+			font-size: 32px;
+		}
+	</style>
+</head>
+
+<body>
+	<form class="wrapper">
+		<input type="text" id="price" placeholder="ЦЕНА-руб" maxlength="5">
+		<input type="text" id="weight" placeholder="ВЕС-грамм">
+		<div class="btn">Посчитать<br>Цена за кг:</div>
+		<input type="text" class="price-kg" disabled placeholder="ЦЕНА ЗА КГ">
+		<input type="reset">
+	</form>
+
+	<script>
+		function getPriceKg(price, weight) {
+			return Math.round((price / weight) * 1000);
+		}
+
+		const price = document.getElementById('price');
+		const weight = document.getElementById('weight');
+		const priceKg = document.querySelector('.price-kg');
+		const btn = document.querySelector('.btn');
+
+		btn.addEventListener('click', function () {
+			const arrNummer = getPriceKg(price.value, weight.value);
+			priceKg.value = `${arrNummer}руб`;
+		})
+
+	</script>
+
+</body>
+
+</html>
